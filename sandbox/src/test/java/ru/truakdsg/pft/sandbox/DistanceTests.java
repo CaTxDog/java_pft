@@ -29,6 +29,9 @@ public class DistanceTests {
 
   @Test
   public void testInt(){
+    int a = 5;
+    double  b = 5.0;
+    Assert.assertEquals(a,b);
     Assert.assertEquals(5, 5.0);
     Assert.assertEquals(5.0, 5);
   }
