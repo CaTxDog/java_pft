@@ -26,4 +26,10 @@ public class DistanceTests {
     Assert.assertNotEquals(p1.distance(p2), p1.distance(p3));
     Assert.assertEquals(p1.distance(p2)*p1.distance(p4), 25);
   }
+
+  @Test
+  public void testInt(){
+    Assert.assertEquals(5, 5.0);
+    Assert.assertEquals(5.0, 5);
+  }
 }
