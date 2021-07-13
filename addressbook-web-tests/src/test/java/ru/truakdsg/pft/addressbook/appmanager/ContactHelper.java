@@ -27,6 +27,50 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
+  public void selectContactNumber(final int s){
+    click(By.xpath("//table//tr[" + String.valueOf(s+1) + "]/td[1]/input"));
+  }
+
+  public void selectContactFirst(){
+    click(By.xpath("//table//tr[2]/td[1]/input"));
+  }
+
+  public void deleteContact(){
+    click(By.xpath("/html/body/div/div[4]/form[2]/div[2]/input"));
+  }
+
+  public void deleteContactAccept(){
+    wd.switchTo().alert().accept();
+  }
+
+  public void viewContactNumberDetails(final int s){
+    click(By.xpath("//table//tr[" + String.valueOf(s+1) + "]/td[8]"));
+  }
+
+  public void viewContactFirstDetails(){
+    click(By.xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[7]/a/img"));
+  }
+
+  public void modifyContact(){
+    click(By.xpath("/html/body/div/div[4]/form[1]/input[2]"));
+  }
+
+  public void downloadContactCard(){
+    click(By.xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[9]/a/img"));
+  }
+
+  public void editContactNumber(final int s){
+    click(By.xpath("//table//tr[" + String.valueOf(s+1) + "]/td[8]"));
+  }
+
+  public void editContactFirst(){
+    click(By.xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));
+  }
+
+  public void updateContact(){
+    click(By.xpath("/html/body/div/div[4]/form[1]/input[1]"));
+  }
+
   public void addNextContact() {
     click(By.linkText("add next"));
   }
