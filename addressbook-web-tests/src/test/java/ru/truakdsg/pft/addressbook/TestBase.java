@@ -123,6 +123,6 @@ public class TestBase {
 
   protected void addNextContact() {
     wd.findElement(By.linkText("add next")).click();
-
+  }
 
 }
