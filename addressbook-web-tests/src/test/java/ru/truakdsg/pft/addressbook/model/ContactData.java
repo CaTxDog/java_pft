@@ -1,4 +1,4 @@
-package ru.truakdsg.pft.addressbook;
+package ru.truakdsg.pft.addressbook.model;
 
 public class ContactData {
   private final String firstname;

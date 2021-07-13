@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="444.9360269360269" y="440.0">ru.truakdsg.pft.addressbook.tests.GroupCreationTest</node>
+    <node x="368.0" y="0.0">ru.truakdsg.pft.addressbook.appmanager.GroupHelper</node>
+    <node x="228.66666666666669" y="326.0">ru.truakdsg.pft.addressbook.tests.TestBase</node>
+    <node x="240.93602693602693" y="440.0">ru.truakdsg.pft.addressbook.tests.GroupDeletionTest</node>
+    <node x="172.00000000000003" y="0.0">ru.truakdsg.pft.addressbook.appmanager.NavigationHelper</node>
+    <node x="200.66666666666669" y="134.0">ru.truakdsg.pft.addressbook.appmanager.ApplicationManager</node>
+    <node x="524.0" y="0.0">ru.truakdsg.pft.addressbook.appmanager.SessionHelper</node>
+    <node x="0.0" y="0.0">ru.truakdsg.pft.addressbook.appmanager.ContactHelper</node>
+    <node x="20.936026936026906" y="440.0">ru.truakdsg.pft.addressbook.tests.ContactCreationTest</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ru.truakdsg.pft.addressbook.appmanager.ApplicationManager" target="ru.truakdsg.pft.addressbook.appmanager.NavigationHelper">
+      <point x="-42.90909090909088" y="-71.0" />
+      <point x="275.7575757575758" y="84.0" />
+      <point x="201.33333333333337" y="84.0" />
+      <point x="-58.666666666666664" y="27.0" />
+    </edge>
+    <edge source="ru.truakdsg.pft.addressbook.appmanager.ApplicationManager" target="ru.truakdsg.pft.addressbook.appmanager.GroupHelper">
+      <point x="21.45454545454544" y="-71.0" />
+      <point x="340.1212121212121" y="74.0" />
+      <point x="390.66666666666674" y="74.0" />
+      <point x="-45.333333333333314" y="27.0" />
+    </edge>
+    <edge source="ru.truakdsg.pft.addressbook.tests.GroupCreationTest" target="ru.truakdsg.pft.addressbook.tests.TestBase">
+      <point x="46.0" y="-15.0" />
+      <point x="582.9360269360269" y="400.0" />
+      <point x="393.6666666666667" y="400.0" />
+      <point x="75.0" y="27.0" />
+    </edge>
+    <edge source="ru.truakdsg.pft.addressbook.tests.GroupDeletionTest" target="ru.truakdsg.pft.addressbook.tests.TestBase">
+      <point x="-46.0" y="-15.0" />
+      <point x="286.9360269360269" y="420.0" />
+      <point x="303.6666666666667" y="420.0" />
+      <point x="-15.0" y="27.0" />
+    </edge>
+    <edge source="ru.truakdsg.pft.addressbook.appmanager.ApplicationManager" target="ru.truakdsg.pft.addressbook.appmanager.SessionHelper">
+      <point x="85.81818181818181" y="-71.0" />
+      <point x="404.4848484848485" y="104.0" />
+      <point x="562.0" y="104.0" />
+      <point x="-38.0" y="27.0" />
+    </edge>
+    <edge source="ru.truakdsg.pft.addressbook.appmanager.ApplicationManager" target="ru.truakdsg.pft.addressbook.appmanager.ContactHelper">
+      <point x="-107.2727272727272" y="-71.0" />
+      <point x="211.3939393939395" y="114.0" />
+      <point x="25.33333333333337" y="114.0" />
+      <point x="-50.66666666666663" y="27.0" />
+    </edge>
+    <edge source="ru.truakdsg.pft.addressbook.tests.ContactCreationTest" target="ru.truakdsg.pft.addressbook.tests.TestBase">
+      <point x="-50.0" y="-15.0" />
+      <point x="70.9360269360269" y="410.0" />
+      <point x="243.66666666666669" y="410.0" />
+      <point x="-75.0" y="27.0" />
+    </edge>
+    <edge source="ru.truakdsg.pft.addressbook.tests.TestBase" target="ru.truakdsg.pft.addressbook.appmanager.ApplicationManager">
+      <point x="-45.0" y="-27.0" />
+      <point x="273.6666666666667" y="301.0" />
+      <point x="259.6666666666667" y="301.0" />
+      <point x="-59.0" y="71.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="247.0" y="289.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

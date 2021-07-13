@@ -1,4 +1,4 @@
-package ru.truakdsg.pft.addressbook;
+package ru.truakdsg.pft.addressbook.model;
 
 public class GroupData {
   private final String name;
