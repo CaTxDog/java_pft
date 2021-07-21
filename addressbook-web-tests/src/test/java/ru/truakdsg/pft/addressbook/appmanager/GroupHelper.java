@@ -1,6 +1,7 @@
 package ru.truakdsg.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import ru.truakdsg.pft.addressbook.model.GroupData;
 
@@ -29,7 +30,9 @@ public class GroupHelper extends HelperBase {
   }
 
   public void selectGrop() {
-    click(By.name("selected[]"));
+    if (isElementPresent(By.xpath("/html/body/div/div[4]/form/span/input"))) {
+      click(By.xpath("/html/body/div/div[4]/form/span/input"));
+    }
   }
 
   public void deleteSelectedGrops() {
