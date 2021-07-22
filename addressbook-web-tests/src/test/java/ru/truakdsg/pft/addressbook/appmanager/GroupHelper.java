@@ -30,9 +30,7 @@ public class GroupHelper extends HelperBase {
   }
 
   public void selectGrop() {
-    if (isElementPresent(By.xpath("/html/body/div/div[4]/form/span/input"))) {
       click(By.xpath("/html/body/div/div[4]/form/span/input"));
-    }
   }
 
   public void deleteSelectedGrops() {
@@ -45,5 +43,16 @@ public class GroupHelper extends HelperBase {
 
   public void updateGroup(){
     click(By.xpath("/html/body/div/div[4]/form/input[3]"));
+  }
+
+  public void createGroup(GroupData group) {
+    initGroupCreation();
+    fillGroupForm(group);
+    submitGroupCreation();
+    returnGroupPage();
+  }
+
+  public boolean isThereAGroup() {
+   return isElementPresent(By.xpath("/html/body/div/div[4]/form/span/input"));
   }
 }

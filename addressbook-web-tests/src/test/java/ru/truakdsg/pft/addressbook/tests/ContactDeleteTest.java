@@ -5,17 +5,11 @@ import ru.truakdsg.pft.addressbook.model.ContactData;
 
 public class ContactDeleteTest extends TestBase{
 
-  //Удаление контакта по порядковому номеру
-  @Test
-  public void deleteContactNumber() throws Exception {
-    app.getContactHelper().selectContactNumber(3);
-    app.getContactHelper().deleteContact();
-    app.getContactHelper().deleteContactAccept();
-  }
-
-  //Удаление первого контакта в списке
   @Test
   public void deleteContactFirst() throws Exception {
+    if (! app.getContactHelper().isThereAContact()){
+      app.getContactHelper().createContact(new ContactData("Petr", "Petrov", "Terminator111", "Raif", "Omsk", "111111111111", "111111111222", "test@test2.com", "test1@test1.com"));
+    }
     app.getContactHelper().selectContactFirst();
     app.getContactHelper().deleteContact();
     app.getContactHelper().deleteContactAccept();

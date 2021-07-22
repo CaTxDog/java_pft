@@ -3,6 +3,7 @@ package ru.truakdsg.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.truakdsg.pft.addressbook.model.ContactData;
+import ru.truakdsg.pft.addressbook.model.GroupData;
 
 public class ContactHelper extends HelperBase {
 
@@ -73,5 +74,19 @@ public class ContactHelper extends HelperBase {
 
   public void addNextContact() {
     click(By.linkText("add next"));
+  }
+
+  public void returnHomePage() {
+    click(By.xpath("/html/body/div/div[3]/ul/li[1]/a"));
+  }
+
+  public void createContact(ContactData contact) {
+    creatNewContact();
+    fillContactForm(contact);
+    returnHomePage();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[1]"));
   }
 }
