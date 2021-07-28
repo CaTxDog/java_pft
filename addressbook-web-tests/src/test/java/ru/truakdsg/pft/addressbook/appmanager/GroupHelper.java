@@ -1,9 +1,14 @@
 package ru.truakdsg.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ru.truakdsg.pft.addressbook.model.GroupData;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class GroupHelper extends HelperBase {
 
@@ -29,8 +34,8 @@ public class GroupHelper extends HelperBase {
     click(By.linkText("group page"));
   }
 
-  public void selectGrop() {
-      click(By.xpath("/html/body/div/div[4]/form/span/input"));
+  public void selectGrop(Integer index) {
+      click(By.xpath("/html/body/div/div[4]/form/span["+(index+1)+"]/input"));
   }
 
   public void deleteSelectedGrops() {
@@ -59,4 +64,16 @@ public class GroupHelper extends HelperBase {
   public int getGroupCount() {
     return wd.findElements(By.xpath("//span")).size();
   }
+
+  public List<GroupData> getGroupList() {
+    List<GroupData> groups = new ArrayList<GroupData>();
+    List<WebElement> elements = wd.findElements(By.xpath("//span[*]"));
+    for (WebElement element : elements) {
+      String name = element.getText();
+      GroupData group = new GroupData(name, null, null);
+      groups.add(group);
+    }
+    return groups;
+  }
+
 }

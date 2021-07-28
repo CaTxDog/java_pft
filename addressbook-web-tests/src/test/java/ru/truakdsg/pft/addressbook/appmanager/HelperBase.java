@@ -5,11 +5,18 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
+import java.util.Random;
+
 public class HelperBase {
   protected WebDriver wd;
 
   public HelperBase(WebDriver wd) {
     this.wd = wd;
+  }
+
+  public static int generateRandomInt(int upperRange){
+    Random random = new Random();
+    return random.nextInt(upperRange);
   }
 
   protected void click(By locator) {

@@ -2,9 +2,7 @@ package ru.truakdsg.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.truakdsg.pft.addressbook.model.ContactData;
-import ru.truakdsg.pft.addressbook.model.GroupData;
 
 public class ContactHelper extends HelperBase {
 
@@ -32,8 +30,8 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//table//tr[" + String.valueOf(s+1) + "]/td[1]/input"));
   }
 
-  public void selectContactFirst(){
-    click(By.xpath("//table//tr[2]/td[1]/input"));
+  public void selectContact(int index){
+    wd.findElements(By.xpath("//table//tr[*]/td[1]/input")).get(index).click();
   }
 
   public void deleteContact(){
