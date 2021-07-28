@@ -10,11 +10,13 @@ import org.openqa.selenium.firefox.ProfilesIni;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
   WebDriver wd;
+  WebDriverWait wait;
   private NavigationHelper navigationHelper;
   private ContactHelper contactHelper;
   private GroupHelper groupHelper;
@@ -27,14 +29,14 @@ public class ApplicationManager {
 
   public void init() {
     //Насйтрока параметров загрузки профиля FF
-    ProfilesIni profile = new ProfilesIni();
-    FirefoxProfile prof = profile.getProfile("fortest");
-    prof.setPreference("browser.download.dir","C:\\Developer\\java_pft\\Contact");
-    prof.setPreference("browser.download.folderList", 2);
-    FirefoxOptions opt = new FirefoxOptions();
-    opt.setProfile(prof);
     //При ошибки отутствия профиля - удалить параметр opt
     if (browser.equals(BrowserType.FIREFOX)) {
+      ProfilesIni profile = new ProfilesIni();
+      FirefoxProfile prof = profile.getProfile("fortest");
+      prof.setPreference("browser.download.dir","C:\\Developer\\java_pft\\Contact");
+      prof.setPreference("browser.download.folderList", 2);
+      FirefoxOptions opt = new FirefoxOptions();
+      opt.setProfile(prof);
       wd = new FirefoxDriver(opt);
     } else if (browser.equals(BrowserType.CHROME)) {
       wd = new ChromeDriver();

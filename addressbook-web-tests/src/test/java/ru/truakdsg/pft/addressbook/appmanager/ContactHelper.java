@@ -2,6 +2,7 @@ package ru.truakdsg.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.truakdsg.pft.addressbook.model.ContactData;
 import ru.truakdsg.pft.addressbook.model.GroupData;
 
@@ -10,7 +11,6 @@ public class ContactHelper extends HelperBase {
   public ContactHelper(WebDriver wd) {
     super(wd);
   }
-
   public void creatNewContact() {
     click(By.linkText("add new"));
   }
@@ -88,5 +88,12 @@ public class ContactHelper extends HelperBase {
 
   public boolean isThereAContact() {
     return isElementPresent(By.xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[1]"));
+  }
+
+  public int getCountactCount() {
+    return wd.findElements(By.xpath("//tr[@name='entry']")).size();
+  }
+
+  public void waitContact() {
   }
 }
