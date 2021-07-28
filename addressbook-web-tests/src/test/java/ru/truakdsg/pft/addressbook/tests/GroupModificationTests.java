@@ -5,16 +5,18 @@ import org.testng.annotations.*;
 import ru.truakdsg.pft.addressbook.appmanager.HelperBase;
 import ru.truakdsg.pft.addressbook.model.GroupData;
 
+import java.util.List;
+
 public class GroupModificationTests extends TestBase {
 
   @Test
   public void testGroupCreation() throws Exception {
     app.getNavigationHelper().gotoGroupPage();
-    int before = app.getGroupHelper().getGroupCount();
     if (!app.getGroupHelper().isThereAGroup()) {
       app.getGroupHelper().createGroup(new GroupData("test1", "test1", "test1"));
     }
-    app.getGroupHelper().selectGrop(0);
+    List<GroupData> before = app.getGroupHelper().getGroupList();
+    app.getGroupHelper().selectGrop(1);
     app.getGroupHelper().groupEdit();
     app.getGroupHelper().fillGroupForm(new GroupData(
             "Name Modify " + HelperBase.generateRandomInt(50),
@@ -22,8 +24,8 @@ public class GroupModificationTests extends TestBase {
             "Footer Modify " + HelperBase.generateRandomInt(50)));
     app.getGroupHelper().updateGroup();
     app.getGroupHelper().returnGroupPage();
-    int after = app.getGroupHelper().getGroupCount();
-    Assert.assertEquals(after, before);
+    List<GroupData> after = app.getGroupHelper().getGroupList();
+    Assert.assertEquals(after.size(), before.size());
   }
 
 }
