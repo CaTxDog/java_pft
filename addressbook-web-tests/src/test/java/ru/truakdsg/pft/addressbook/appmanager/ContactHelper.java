@@ -2,7 +2,13 @@ package ru.truakdsg.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ru.truakdsg.pft.addressbook.model.ContactData;
+import ru.truakdsg.pft.addressbook.model.GroupData;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -88,10 +94,26 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[1]"));
   }
 
-  public int getCountactCount() {
+  public int getCountactCount(){
     return wd.findElements(By.xpath("//tr[@name='entry']")).size();
   }
 
-  public void waitContact() {
+  public List<ContactData> getContactList(){
+    List<ContactData> contacts = new ArrayList<>();
+    List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
+    for (WebElement element : elements) {
+      String email3 = null;
+      String email2 = null;
+      String email = null;
+      String name = element.findElement(By.xpath("td[2]")).getText();
+      String lastname = element.findElement(By.xpath("td[3]")).getText();
+      String address = element.findElement(By.xpath("td[4]")).getText();
+/*      String emailAll = element.findElement(By.xpath("td[5]")).getText();
+      List<String> emailSplit;
+      emailSplit = Arrays.asList(emailAll.split("\n"));*/
+      ContactData contact = new ContactData(name,lastname, null, null, address,null ,null ,null, null);
+      contacts.add(contact);
+    }
+    return contacts;
   }
 }
