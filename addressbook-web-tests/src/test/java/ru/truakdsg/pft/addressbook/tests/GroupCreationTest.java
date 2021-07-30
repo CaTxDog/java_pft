@@ -13,6 +13,7 @@ public class GroupCreationTest extends TestBase {
     app.getNavigationHelper().gotoGroupPage();
     List<GroupData> before = app.getGroupHelper().getGroupList();
     app.getGroupHelper().createGroup(new GroupData(
+            null,
             "name " + app.getGroupHelper().generateRandomInt(50),
             "header " + app.getGroupHelper().generateRandomInt(50),
             "footer " + app.getGroupHelper().generateRandomInt(50)));

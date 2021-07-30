@@ -64,12 +64,12 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[9]/a/img"));
   }
 
-  public void editContactNumber(final int s){
+ /* public void editContactNumber(final int s){
     click(By.xpath("//table//tr[" + String.valueOf(s+1) + "]/td[8]"));
-  }
+  }*/
 
-  public void editContactFirst(){
-    click(By.xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));
+  public void editContactSelect(final int s){
+    click(By.xpath("//table//tr[" + String.valueOf(s+2) + "]/td[8]"));
   }
 
   public void updateContact(){
@@ -102,16 +102,24 @@ public class ContactHelper extends HelperBase {
     List<ContactData> contacts = new ArrayList<>();
     List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
     for (WebElement element : elements) {
-      String email3 = null;
-      String email2 = null;
-      String email = null;
+      String id = element.findElement(By.xpath("td/input")).getAttribute("value");
       String name = element.findElement(By.xpath("td[2]")).getText();
       String lastname = element.findElement(By.xpath("td[3]")).getText();
       String address = element.findElement(By.xpath("td[4]")).getText();
 /*      String emailAll = element.findElement(By.xpath("td[5]")).getText();
       List<String> emailSplit;
       emailSplit = Arrays.asList(emailAll.split("\n"));*/
-      ContactData contact = new ContactData(name,lastname, null, null, address,null ,null ,null, null);
+      ContactData contact = new ContactData(
+              id,
+              name,
+              lastname,
+              null,
+              null,
+              address,
+              null,
+              null,
+              null,
+              null);
       contacts.add(contact);
     }
     return contacts;
