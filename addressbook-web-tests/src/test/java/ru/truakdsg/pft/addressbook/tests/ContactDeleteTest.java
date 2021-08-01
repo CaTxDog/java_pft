@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.truakdsg.pft.addressbook.model.ContactData;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class ContactDeleteTest extends TestBase{
@@ -22,6 +23,9 @@ public class ContactDeleteTest extends TestBase{
     Assert.assertEquals(after.size(), before.size()-1);
 
     before.remove(before.size()-1);
+    Comparator<? super ContactData> byId = Comparator.comparingInt(ContactData::getId);
+    before.sort(byId);
+    after.sort(byId);
     Assert.assertEquals(before, after);
   }
 

@@ -69,7 +69,7 @@ public class ContactHelper extends HelperBase {
   }*/
 
   public void editContactSelect(final int s){
-    click(By.xpath("//table//tr[" + String.valueOf(s+2) + "]/td[8]"));
+    click(By.xpath("//table//tr[" + String.valueOf(s+1) + "]/td[8]"));
   }
 
   public void updateContact(){
@@ -102,9 +102,9 @@ public class ContactHelper extends HelperBase {
     List<ContactData> contacts = new ArrayList<>();
     List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
     for (WebElement element : elements) {
-      String id = element.findElement(By.xpath("td/input")).getAttribute("value");
-      String name = element.findElement(By.xpath("td[2]")).getText();
-      String lastname = element.findElement(By.xpath("td[3]")).getText();
+      int id = Integer.parseInt(element.findElement(By.xpath("td/input")).getAttribute("value"));
+      String lastname = element.findElement(By.xpath("td[2]")).getText();
+      String name = element.findElement(By.xpath("td[3]")).getText();
       String address = element.findElement(By.xpath("td[4]")).getText();
 /*      String emailAll = element.findElement(By.xpath("td[5]")).getText();
       List<String> emailSplit;

@@ -5,8 +5,7 @@ import org.testng.annotations.*;
 import ru.truakdsg.pft.addressbook.appmanager.HelperBase;
 import ru.truakdsg.pft.addressbook.model.GroupData;
 
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class GroupModificationTests extends TestBase {
 
@@ -14,7 +13,7 @@ public class GroupModificationTests extends TestBase {
   public void testGroupCreation() throws Exception {
     app.getNavigationHelper().gotoGroupPage();
     if (!app.getGroupHelper().isThereAGroup()) {
-      app.getGroupHelper().createGroup(new GroupData(null, "test1", "test1", "test1"));
+      app.getGroupHelper().createGroup(new GroupData("test1", "test1", "test1"));
     }
     List<GroupData> before = app.getGroupHelper().getGroupList();
     app.getGroupHelper().selectGrop(before.size()-1);
@@ -32,7 +31,10 @@ public class GroupModificationTests extends TestBase {
 
     before.remove(before.size()-1);
     before.add(group);
-    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+    Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
+    before.sort(byId);
+    after.sort(byId);
+    Assert.assertEquals(before, after);
   }
 
 }
