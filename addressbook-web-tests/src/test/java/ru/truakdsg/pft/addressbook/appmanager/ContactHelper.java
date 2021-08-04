@@ -4,10 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.truakdsg.pft.addressbook.model.ContactData;
-import ru.truakdsg.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ContactHelper extends HelperBase {
@@ -80,6 +78,10 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add next"));
   }
 
+  public void gotoHomePage(){
+    click(By.xpath("/html/body/div/div[3]/ul/li[1]/a"));
+  }
+
   public void returnHomePage() {
     click(By.xpath("/html/body/div/div[3]/ul/li[1]/a"));
   }
@@ -88,6 +90,13 @@ public class ContactHelper extends HelperBase {
     creatNewContact();
     fillContactForm(contact);
     returnHomePage();
+  }
+
+  public void editContact(int index, ContactData contact) {
+    editContactSelect(index);
+    fillContactForm(contact);
+    updateContact();
+    gotoHomePage();
   }
 
   public boolean isThereAContact() {

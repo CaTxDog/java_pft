@@ -9,27 +9,28 @@ import java.util.*;
 
 public class GroupModificationTests extends TestBase {
 
-  @Test
-  public void testGroupCreation() throws Exception {
+  @BeforeMethod
+  public void ensurePreconditions(){
     app.getNavigationHelper().gotoGroupPage();
     if (!app.getGroupHelper().isThereAGroup()) {
       app.getGroupHelper().createGroup(new GroupData("test1", "test1", "test1"));
     }
+  }
+
+  @Test
+  public void testGroupCreation() throws Exception {
     List<GroupData> before = app.getGroupHelper().getGroupList();
-    app.getGroupHelper().selectGrop(before.size()-1);
-    app.getGroupHelper().groupEdit();
+    int index = before.size()-1;
     GroupData group = new GroupData(
-            before.get(before.size()-1).getId(),
+            before.get(index).getId(),
             "Name Modify " + HelperBase.generateRandomInt(50),
             "Header Modify " + HelperBase.generateRandomInt(50),
             "Footer Modify " + HelperBase.generateRandomInt(50));
-    app.getGroupHelper().fillGroupForm(group);
-    app.getGroupHelper().updateGroup();
-    app.getGroupHelper().returnGroupPage();
+    app.getGroupHelper().modifyGroup(index, group);
     List<GroupData> after = app.getGroupHelper().getGroupList();
     Assert.assertEquals(after.size(), before.size());
 
-    before.remove(before.size()-1);
+    before.remove(index);
     before.add(group);
     Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
     before.sort(byId);

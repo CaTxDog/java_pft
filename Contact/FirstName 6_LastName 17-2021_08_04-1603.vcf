@@ -1,0 +1,20 @@
+BEGIN:VCARD
+VERSION:2.1
+N:LastName 17;FirstName 6;;;;
+FN:FirstName 6 LastName 17
+ORG:Raif
+TITLE:
+ADR;home:;;;Omsk;;;
+ADR;work:;;;;;;
+TEL;HOME;VOICE:+81025723881
+TEL;cell;VOICE:+8255137760
+TEL;work;VOICE:
+TEL;fax:
+TEL;voice:
+EMAIL;PREF;INTERNET:test@test1.com
+EMAIL;INTERNET:test1@test1.com
+EMAIL;INTERNET:
+URL;WORK:
+BDAY:--00
+X-ANNIVERSARY:--00
+END:VCARD

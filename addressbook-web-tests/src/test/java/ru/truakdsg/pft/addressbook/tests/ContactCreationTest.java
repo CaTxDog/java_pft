@@ -10,6 +10,11 @@ import java.util.List;
 
 public class ContactCreationTest extends TestBase {
 
+  @BeforeMethod
+  public void ensurePreconditions(){
+    app.getNavigationHelper().gotoHomePage();
+  }
+
   @Test
   public void testContactCreation() throws Exception {
     List<ContactData> before = app.getContactHelper().getContactList();

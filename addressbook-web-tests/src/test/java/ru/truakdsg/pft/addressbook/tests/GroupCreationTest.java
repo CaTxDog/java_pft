@@ -2,6 +2,7 @@ package ru.truakdsg.pft.addressbook.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.*;
+import ru.truakdsg.pft.addressbook.model.ContactData;
 import ru.truakdsg.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
@@ -10,9 +11,13 @@ import java.util.List;
 
 public class GroupCreationTest extends TestBase {
 
+  @BeforeMethod
+  public void ensurePreconditions(){
+    app.getNavigationHelper().gotoGroupPage();
+  }
+
   @Test
   public void testGroupCreation() throws Exception {
-    app.getNavigationHelper().gotoGroupPage();
     List<GroupData> before = app.getGroupHelper().getGroupList();
     GroupData group = new GroupData(
             "name " + app.getGroupHelper().generateRandomInt(50),
