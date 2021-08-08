@@ -8,10 +8,10 @@ public class ContactSaveTest extends TestBase {
   //При инициализации грузится локально созданный профиль, устанавливается путь для сохранения файлов
   @Test (enabled = false)
   public void downloadContactFirst() throws Exception {
-    if (! app.getContactHelper().isThereAContact()){
-      app.getContactHelper().createContact(new ContactData("Petr", "Petrov", "Terminator111", "Raif", "Omsk", "111111111111", "111111111222", "test@test2.com", "test1@test1.com"));
+    if (! app.contact().isThereAContact()){
+      app.contact().create(new ContactData("Petr", "Petrov", "Terminator111", "Raif", "Omsk", "111111111111", "111111111222", "test@test2.com", "test1@test1.com"));
     }
-      app.getContactHelper().downloadContactCard();
+      app.contact().downloadContactCard();
   }
 
 }

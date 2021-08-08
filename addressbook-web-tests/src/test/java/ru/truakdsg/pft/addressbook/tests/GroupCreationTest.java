@@ -2,29 +2,27 @@ package ru.truakdsg.pft.addressbook.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.*;
-import ru.truakdsg.pft.addressbook.model.ContactData;
 import ru.truakdsg.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class GroupCreationTest extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
-    app.getNavigationHelper().gotoGroupPage();
+    app.goTo().GroupPage();
   }
 
   @Test
   public void testGroupCreation() throws Exception {
-    List<GroupData> before = app.getGroupHelper().getGroupList();
+    List<GroupData> before = app.group().list();
     GroupData group = new GroupData(
-            "name " + app.getGroupHelper().generateRandomInt(50),
-            "header " + app.getGroupHelper().generateRandomInt(50),
-            "footer " + app.getGroupHelper().generateRandomInt(50));
-    app.getGroupHelper().createGroup(group);
-    List<GroupData> after = app.getGroupHelper().getGroupList();
+            "name " + app.group().generateRandomInt(50),
+            "header " + app.group().generateRandomInt(50),
+            "footer " + app.group().generateRandomInt(50));
+    app.group().create(group);
+    List<GroupData> after = app.group().list();
     Assert.assertEquals(after.size(), before.size() + 1);
 
 //  group.setId(after.stream().max(Comparator.comparingInt(GroupData::getId)).get().getId());

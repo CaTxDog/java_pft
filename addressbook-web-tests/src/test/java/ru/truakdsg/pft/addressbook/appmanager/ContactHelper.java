@@ -50,11 +50,11 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//table//tr[" + String.valueOf(s+1) + "]/td[8]"));
   }
 
-  public void viewContactFirstDetails(){
+  public void viewDetails(){
     click(By.xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[7]/a/img"));
   }
 
-  public void modifyContact(){
+  public void modify(){
     click(By.xpath("/html/body/div/div[4]/form[1]/input[2]"));
   }
 
@@ -70,15 +70,15 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//table//tr[" + String.valueOf(s+1) + "]/td[8]"));
   }
 
-  public void updateContact(){
+  public void update(){
     click(By.xpath("/html/body/div/div[4]/form[1]/input[1]"));
   }
 
-  public void addNextContact() {
+  public void addNext() {
     click(By.linkText("add next"));
   }
 
-  public void gotoHomePage(){
+  public void HomePage(){
     click(By.xpath("/html/body/div/div[3]/ul/li[1]/a"));
   }
 
@@ -86,17 +86,24 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("/html/body/div/div[3]/ul/li[1]/a"));
   }
 
-  public void createContact(ContactData contact) {
+  public void create(ContactData contact) {
     creatNewContact();
     fillContactForm(contact);
     returnHomePage();
   }
 
-  public void editContact(int index, ContactData contact) {
+  public void edit(int index, ContactData contact) {
     editContactSelect(index);
     fillContactForm(contact);
-    updateContact();
-    gotoHomePage();
+    update();
+    HomePage();
+  }
+
+  public void delete(int index) {
+    selectContact(index);
+    deleteContact();
+    deleteContactAccept();
+    HomePage();
   }
 
   public boolean isThereAContact() {
@@ -107,7 +114,7 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.xpath("//tr[@name='entry']")).size();
   }
 
-  public List<ContactData> getContactList(){
+  public List<ContactData> list(){
     List<ContactData> contacts = new ArrayList<>();
     List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
     for (WebElement element : elements) {

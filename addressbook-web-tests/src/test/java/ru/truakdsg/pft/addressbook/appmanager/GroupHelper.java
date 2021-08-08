@@ -5,10 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.truakdsg.pft.addressbook.model.GroupData;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class GroupHelper extends HelperBase {
 
@@ -20,7 +18,7 @@ public class GroupHelper extends HelperBase {
     click(By.name("new"));
   }
 
-  public void fillGroupForm(GroupData groupData) {
+  public void fillForm(GroupData groupData) {
     type(By.name("group_name"), groupData.getName());
     type(By.name("group_header"), groupData.getHeader());
     type(By.name("group_footer"), groupData.getFooter());
@@ -34,47 +32,52 @@ public class GroupHelper extends HelperBase {
     click(By.linkText("group page"));
   }
 
-  public void selectGrop(Integer index) {
+  public void select(Integer index) {
       click(By.xpath("/html/body/div/div[4]/form/span["+(index+1)+"]/input"));
   }
 
-  public void deleteSelectedGrops() {
+  public void deleteSelected() {
     click(By.name("delete"));
   }
 
-  public void groupEdit(){
+  public void edit(){
     click(By.xpath("/html/body/div/div[4]/form/input[6]"));
   }
 
-  public void updateGroup(){
+  public void update(){
     click(By.xpath("/html/body/div/div[4]/form/input[3]"));
   }
 
-  public void createGroup(GroupData group) {
+  public void create(GroupData group) {
     initGroupCreation();
-    fillGroupForm(group);
+    fillForm(group);
     submitGroupCreation();
     returnGroupPage();
   }
 
-  public void modifyGroup(int index, GroupData group) {
-    selectGrop(index);
-    groupEdit();
-    fillGroupForm(group);
-    updateGroup();
+  public void modify(int index, GroupData group) {
+    select(index);
+    edit();
+    fillForm(group);
+    update();
     returnGroupPage();
   }
 
+  public void delete(int index) {
+    select(index);
+    deleteSelected();
+    returnGroupPage();
+  }
 
-  public boolean isThereAGroup() {
+/*  public boolean isThereAGroup() {
    return isElementPresent(By.xpath("/html/body/div/div[4]/form/span/input"));
   }
 
   public int getGroupCount() {
     return wd.findElements(By.xpath("//span")).size();
-  }
+  }*/
 
-  public List<GroupData> getGroupList() {
+  public List<GroupData> list() {
     List<GroupData> groups = new ArrayList<GroupData>();
     List<WebElement> elements = wd.findElements(By.xpath("//span[*]"));
     for (WebElement element : elements) {

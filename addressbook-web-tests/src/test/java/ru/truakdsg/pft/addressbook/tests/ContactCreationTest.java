@@ -12,12 +12,12 @@ public class ContactCreationTest extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().HomePage();
   }
 
   @Test
   public void testContactCreation() throws Exception {
-    List<ContactData> before = app.getContactHelper().getContactList();
+    List<ContactData> before = app.contact().list();
     ContactData contact = new ContactData(
             "Sergey "+HelperBase.generateRandomInt(50),
             "Test "+HelperBase.generateRandomInt(50),
@@ -27,8 +27,8 @@ public class ContactCreationTest extends TestBase {
             "+7"+HelperBase.generateRandomInt(Integer.MAX_VALUE),
             "test@test1.com",
             "test1@test1.com");
-    app.getContactHelper().createContact(contact);
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.contact().create(contact);
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);
 
     before.add(contact);
