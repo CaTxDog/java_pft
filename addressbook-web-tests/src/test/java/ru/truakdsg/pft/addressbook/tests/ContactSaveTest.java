@@ -8,7 +8,7 @@ public class ContactSaveTest extends TestBase {
   //При инициализации грузится локально созданный профиль, устанавливается путь для сохранения файлов
   @Test (enabled = false)
   public void downloadContactFirst() throws Exception {
-    if (! app.contact().isThereAContact()){
+    if (app.contact().all().size() == 0){
       app.contact().create(new ContactData()
               .withFirstname("Petr")
               .withLastname("Petrov")

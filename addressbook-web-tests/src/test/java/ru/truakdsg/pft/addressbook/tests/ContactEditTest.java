@@ -6,15 +6,14 @@ import org.testng.annotations.Test;
 import ru.truakdsg.pft.addressbook.appmanager.HelperBase;
 import ru.truakdsg.pft.addressbook.model.ContactData;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class ContactEditTest extends TestBase{
 
   @BeforeMethod
   public void ensurePreconditions(){
     app.goTo().HomePage();
-    if (app.contact().list().size() == 0){
+    if (app.contact().all().size() == 0){
       app.contact().create(new ContactData()
               .withFirstname("Petr")
               .withLastname("Petrov")
@@ -30,10 +29,10 @@ public class ContactEditTest extends TestBase{
 
   @Test
   public void testContactCreationFirst() throws Exception {
-    List<ContactData> before = app.contact().list();
-    int index = before.size()-1;
+    Set<ContactData> before = app.contact().all();
+    ContactData modifyContact = before.iterator().next();
     ContactData contact = new ContactData()
-            .withId(before.get(index-1).getId())
+            .withId(modifyContact.getId())
             .withFirstname("FirstName "+ HelperBase.generateRandomInt(50))
             .withLastname("LastName "+HelperBase.generateRandomInt(50))
             .withNickname("Terminator-"+HelperBase.generateRandomInt(50))
@@ -43,15 +42,12 @@ public class ContactEditTest extends TestBase{
             .withMobilePhone("+8"+HelperBase.generateRandomInt(Integer.MAX_VALUE))
             .withEmail("test@test2.com")
             .withEmail2("test1@test1.com");
-    app.contact().edit(index, contact);
-    List<ContactData> after = app.contact().list();
+    app.contact().modify(contact);
+    Set<ContactData> after = app.contact().all();
     Assert.assertEquals(after.size(), before.size());
 
-    before.remove(index-1);
+    before.remove(modifyContact);
     before.add(contact);
-    Comparator<? super ContactData> byId = Comparator.comparingInt(ContactData::getId);
-    before.sort(byId);
-    after.sort(byId);
     Assert.assertEquals(before, after);
   }
 }

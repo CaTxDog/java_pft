@@ -9,7 +9,7 @@ public class ContactViewDetailsTest extends TestBase{
   @BeforeMethod
   public void ensurePreconditions(){
     app.goTo().HomePage();
-    if (app.contact().list().size() == 0){
+    if (app.contact().all().size() == 0){
       app.contact().create(new ContactData()
               .withFirstname("Petr")
               .withLastname("Petrov")
@@ -31,7 +31,7 @@ public class ContactViewDetailsTest extends TestBase{
   @Test
   public void modifyContactDetails() throws Exception {
     app.contact().viewDetails();
-    app.contact().modify();
+    app.contact().editContact();
     app.contact().fillContactForm(new ContactData()
             .withFirstname("Modify")
             .withLastname("Modify")

@@ -1,11 +1,11 @@
 package ru.truakdsg.pft.addressbook.tests;
 
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import ru.truakdsg.pft.addressbook.model.GroupData;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class GroupCreationTest extends TestBase {
 
@@ -16,20 +16,17 @@ public class GroupCreationTest extends TestBase {
 
   @Test
   public void testGroupCreation() throws Exception {
-    List<GroupData> before = app.group().list();
+    Set<GroupData> before = app.group().all();
     GroupData group = new GroupData()
             .withName("name " + app.group().generateRandomInt(50))
             .withHeader("header " + app.group().generateRandomInt(50))
             .withFooter("footer " + app.group().generateRandomInt(50));
     app.group().create(group);
-    List<GroupData> after = app.group().list();
+    Set<GroupData> after = app.group().all();
     Assert.assertEquals(after.size(), before.size() + 1);
 
-//  group.setId(after.stream().max(Comparator.comparingInt(GroupData::getId)).get().getId());
+    group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt());
     before.add(group);
-    Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
-    before.sort(byId);
-    after.sort(byId);
     Assert.assertEquals(before, after);
   }
 }
