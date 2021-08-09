@@ -17,10 +17,10 @@ public class GroupCreationTest extends TestBase {
   @Test
   public void testGroupCreation() throws Exception {
     List<GroupData> before = app.group().list();
-    GroupData group = new GroupData(
-            "name " + app.group().generateRandomInt(50),
-            "header " + app.group().generateRandomInt(50),
-            "footer " + app.group().generateRandomInt(50));
+    GroupData group = new GroupData()
+            .withName("name " + app.group().generateRandomInt(50))
+            .withHeader("header " + app.group().generateRandomInt(50))
+            .withFooter("footer " + app.group().generateRandomInt(50));
     app.group().create(group);
     List<GroupData> after = app.group().list();
     Assert.assertEquals(after.size(), before.size() + 1);

@@ -18,15 +18,16 @@ public class ContactCreationTest extends TestBase {
   @Test
   public void testContactCreation() throws Exception {
     List<ContactData> before = app.contact().list();
-    ContactData contact = new ContactData(
-            "Sergey "+HelperBase.generateRandomInt(50),
-            "Test "+HelperBase.generateRandomInt(50),
-            "NewBie "+HelperBase.generateRandomInt(50),
-            "Raif", "Omsk",
-            "+7"+HelperBase.generateRandomInt(Integer.MAX_VALUE),
-            "+7"+HelperBase.generateRandomInt(Integer.MAX_VALUE),
-            "test@test1.com",
-            "test1@test1.com");
+    ContactData contact = new ContactData()
+            .withFirstname("Sergey "+HelperBase.generateRandomInt(50))
+            .withLastname("Test "+HelperBase.generateRandomInt(50))
+            .withNickname("NewBie "+HelperBase.generateRandomInt(50))
+            .withCompany("Raif")
+            .withAddress("Omsk")
+            .withHomePhone("+7"+HelperBase.generateRandomInt(Integer.MAX_VALUE))
+            .withMobilePhone("+7"+HelperBase.generateRandomInt(Integer.MAX_VALUE))
+            .withEmail("test@test1.com")
+            .withEmail2("test1@test1.com");
     app.contact().create(contact);
     List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);

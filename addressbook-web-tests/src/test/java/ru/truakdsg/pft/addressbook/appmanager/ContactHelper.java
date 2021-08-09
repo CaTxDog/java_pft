@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.truakdsg.pft.addressbook.model.ContactData;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,20 +121,11 @@ public class ContactHelper extends HelperBase {
       String lastname = element.findElement(By.xpath("td[2]")).getText();
       String name = element.findElement(By.xpath("td[3]")).getText();
       String address = element.findElement(By.xpath("td[4]")).getText();
-/*      String emailAll = element.findElement(By.xpath("td[5]")).getText();
-      List<String> emailSplit;
-      emailSplit = Arrays.asList(emailAll.split("\n"));*/
-      ContactData contact = new ContactData(
-              id,
-              name,
-              lastname,
-              null,
-              null,
-              address,
-              null,
-              null,
-              null,
-              null);
+      ContactData contact = new ContactData()
+              .withId(id)
+              .withFirstname(name)
+              .withLastname(lastname)
+              .withAddress(address);
       contacts.add(contact);
     }
     return contacts;

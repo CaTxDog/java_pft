@@ -9,7 +9,16 @@ public class ContactSaveTest extends TestBase {
   @Test (enabled = false)
   public void downloadContactFirst() throws Exception {
     if (! app.contact().isThereAContact()){
-      app.contact().create(new ContactData("Petr", "Petrov", "Terminator111", "Raif", "Omsk", "111111111111", "111111111222", "test@test2.com", "test1@test1.com"));
+      app.contact().create(new ContactData()
+              .withFirstname("Petr")
+              .withLastname("Petrov")
+              .withNickname("Terminator111")
+              .withCompany("Raif")
+              .withAddress("Omsk")
+              .withHomePhone("111111111111")
+              .withMobilePhone("111111111222")
+              .withEmail("test@test2.com")
+              .withEmail2("test1@test1.com"));
     }
       app.contact().downloadContactCard();
   }

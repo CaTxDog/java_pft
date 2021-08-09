@@ -10,7 +10,16 @@ public class ContactViewDetailsTest extends TestBase{
   public void ensurePreconditions(){
     app.goTo().HomePage();
     if (app.contact().list().size() == 0){
-      app.contact().create(new ContactData("Petr", "Petrov", "Terminator111", "Raif", "Omsk", "111111111111", "111111111222", "test@test2.com", "test1@test1.com"));
+      app.contact().create(new ContactData()
+              .withFirstname("Petr")
+              .withLastname("Petrov")
+              .withNickname("Terminator111")
+              .withCompany("Raif")
+              .withAddress("Omsk")
+              .withHomePhone("111111111111")
+              .withMobilePhone("111111111222")
+              .withEmail("test@test2.com")
+              .withEmail2("test1@test1.com"));
     }
   }
 
@@ -23,7 +32,16 @@ public class ContactViewDetailsTest extends TestBase{
   public void modifyContactDetails() throws Exception {
     app.contact().viewDetails();
     app.contact().modify();
-    app.contact().fillContactForm(new ContactData("Sergey_v1", "Ivanov_v1", "Terminator228_v1", "Raif_v1", "Omsk", "112233", "111222333", "test_v1@test1.com", "test1@test1.com"));
+    app.contact().fillContactForm(new ContactData()
+            .withFirstname("Modify")
+            .withLastname("Modify")
+            .withNickname("Modify")
+            .withCompany("Modify")
+            .withAddress("Modify")
+            .withHomePhone("Modify")
+            .withMobilePhone("Modify")
+            .withEmail("Modify@Modify1.com")
+            .withEmail2("Modify2@Modify2.com"));
   }
 
 }

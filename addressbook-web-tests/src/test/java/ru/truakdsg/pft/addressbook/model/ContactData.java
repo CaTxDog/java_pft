@@ -3,62 +3,66 @@ package ru.truakdsg.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  private int id;
-  private final String firstname;
-  private final String lastname;
-  private final String nickname;
-  private final String company;
-  private final String address;
-  private final String homePhone;
-  private final String mobilePhone;
-  private final String email;
-  private final String email2;
+  private int id = Integer.MAX_VALUE;
+  private String firstname;
+  private String lastname;
+  private String nickname;
+  private String company;
+  private String address;
+  private String homePhone;
+  private String mobilePhone;
+  private String email;
+  private String email2;
 
 
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id='" + id + '\'' +
-            ", firstname='" + firstname + '\'' +
-            ", lastname='" + lastname + '\'' +
-            ", nickname='" + nickname + '\'' +
-            ", company='" + company + '\'' +
-            ", address='" + address + '\'' +
-            ", homePhone='" + homePhone + '\'' +
-            ", mobilePhone='" + mobilePhone + '\'' +
-            ", email='" + email + '\'' +
-            ", email2='" + email2 + '\'' +
-            '}';
-  }
-
-  public ContactData(int id, String firstname, String lastname, String nickname, String company, String address, String homePhone, String mobilePhone, String email, String email2) {
+  public ContactData withId(int id) {
     this.id = id;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.company = company;
-    this.address = address;
-    this.homePhone = homePhone;
-    this.mobilePhone = mobilePhone;
-    this.email = email;
-    this.email2 = email2;
+    return this;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public ContactData withFirstname(String firstname) {
+    this.firstname = firstname;
+    return this;
   }
 
-  public ContactData(String firstname, String lastname, String nickname, String company, String address, String homePhone, String mobilePhone, String email, String email2) {
-    this.id = Integer.MAX_VALUE;
-    this.firstname = firstname;
+  public ContactData withLastname(String lastname) {
     this.lastname = lastname;
+    return this;
+  }
+
+  public ContactData withNickname(String nickname) {
     this.nickname = nickname;
+    return this;
+  }
+
+  public ContactData withCompany(String company) {
     this.company = company;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
     this.address = address;
+    return this;
+  }
+
+  public ContactData withHomePhone(String homePhone) {
     this.homePhone = homePhone;
+    return this;
+  }
+
+  public ContactData withMobilePhone(String mobilePhone) {
     this.mobilePhone = mobilePhone;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
     this.email = email;
+    return this;
+  }
+
+  public ContactData withEmail2(String email2) {
     this.email2 = email2;
+    return this;
   }
 
   public int getId() {
@@ -113,4 +117,21 @@ public class ContactData {
   public int hashCode() {
     return Objects.hash(firstname, lastname, address);
   }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id='" + id + '\'' +
+            ", firstname='" + firstname + '\'' +
+            ", lastname='" + lastname + '\'' +
+            ", nickname='" + nickname + '\'' +
+            ", company='" + company + '\'' +
+            ", address='" + address + '\'' +
+            ", homePhone='" + homePhone + '\'' +
+            ", mobilePhone='" + mobilePhone + '\'' +
+            ", email='" + email + '\'' +
+            ", email2='" + email2 + '\'' +
+            '}';
+  }
 }
+
