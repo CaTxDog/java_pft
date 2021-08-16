@@ -14,6 +14,9 @@ public class ContactData {
   private String email;
   private String email2;
 
+  public int getId() {
+    return id;
+  }
 
   public ContactData withId(int id) {
     this.id = id;
@@ -63,10 +66,6 @@ public class ContactData {
   public ContactData withEmail2(String email2) {
     this.email2 = email2;
     return this;
-  }
-
-  public int getId() {
-    return id;
   }
 
   public String getFirstname() {

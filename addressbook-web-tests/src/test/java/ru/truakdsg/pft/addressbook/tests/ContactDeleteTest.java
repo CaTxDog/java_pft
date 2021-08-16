@@ -1,11 +1,18 @@
 package ru.truakdsg.pft.addressbook.tests;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.truakdsg.pft.addressbook.model.ContactData;
+import ru.truakdsg.pft.addressbook.model.Contacts;
 
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class ContactDeleteTest extends TestBase{
 
@@ -28,14 +35,14 @@ public class ContactDeleteTest extends TestBase{
 
   @Test
   public void deleteContactFirst() throws Exception {
-    Set<ContactData> before = app.contact().all();
+    Contacts before = app.contact().all();
     ContactData deletedContact = before.iterator().next();
     app.contact().delete(deletedContact);
-    Set<ContactData> after = app.contact().all();
-    Assert.assertEquals(after.size(), before.size()-1);
+    Contacts after = app.contact().all();
+    assertEquals(after.size(), before.size()-1);
 
     before.remove(deletedContact);
-    Assert.assertEquals(before, after);
+    assertThat(after, equalTo(before.withOut(deletedContact)));
   }
 
 }

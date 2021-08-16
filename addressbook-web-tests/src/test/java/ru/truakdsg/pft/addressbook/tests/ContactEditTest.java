@@ -1,12 +1,19 @@
 package ru.truakdsg.pft.addressbook.tests;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.truakdsg.pft.addressbook.appmanager.HelperBase;
 import ru.truakdsg.pft.addressbook.model.ContactData;
+import ru.truakdsg.pft.addressbook.model.Contacts;
 
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class ContactEditTest extends TestBase{
 
@@ -29,7 +36,7 @@ public class ContactEditTest extends TestBase{
 
   @Test
   public void testContactCreationFirst() throws Exception {
-    Set<ContactData> before = app.contact().all();
+    Contacts before = app.contact().all();
     ContactData modifyContact = before.iterator().next();
     ContactData contact = new ContactData()
             .withId(modifyContact.getId())
@@ -43,11 +50,13 @@ public class ContactEditTest extends TestBase{
             .withEmail("test@test2.com")
             .withEmail2("test1@test1.com");
     app.contact().modify(contact);
-    Set<ContactData> after = app.contact().all();
-    Assert.assertEquals(after.size(), before.size());
+    Contacts after = app.contact().all();
+    assertEquals(after.size(), before.size());
 
     before.remove(modifyContact);
     before.add(contact);
-    Assert.assertEquals(before, after);
+    assertEquals(before, after);
+
+    assertThat(after, equalTo(before.withOut(modifyContact).withAdded(contact)));
   }
 }

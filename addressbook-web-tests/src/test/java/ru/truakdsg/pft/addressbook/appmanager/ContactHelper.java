@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.truakdsg.pft.addressbook.model.ContactData;
+import ru.truakdsg.pft.addressbook.model.Contacts;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -32,7 +34,7 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
-  public void selectContactNumber(final int s){
+  public void selectContactByNumber(final int s){
     click(By.xpath("//table//tr[" + String.valueOf(s+1) + "]/td[1]/input"));
   }
 
@@ -116,8 +118,8 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.xpath("//tr[@name='entry']")).size();
   }*/
 
-  public Set<ContactData> all(){
-    Set<ContactData> contacts = new HashSet<>();
+  public Contacts all(){
+    Contacts contacts = new Contacts();
     List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
     for (WebElement element : elements) {
       int id = Integer.parseInt(element.findElement(By.xpath("td/input")).getAttribute("value"));
