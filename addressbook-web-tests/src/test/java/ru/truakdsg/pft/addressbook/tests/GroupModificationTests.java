@@ -32,8 +32,8 @@ public class GroupModificationTests extends TestBase {
             .withHeader("Modify header " + app.group().generateRandomInt(50))
             .withFooter("Modify footer " + app.group().generateRandomInt(50));
     app.group().modify(group);
+    assertThat(app.group().count(), equalTo(before.size()));
     Groups after = app.group().all();
-    assertEquals(after.size(), before.size());
     assertThat(after, equalTo(before.withOut(modifyGroup).withAdded(group)));
   }
 

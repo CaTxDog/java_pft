@@ -50,7 +50,7 @@ public class GroupHelper extends HelperBase {
     initGroupCreation();
     fillForm(group);
     submitGroupCreation();
-    groupCache=null;
+    groupCache = null;
     returnGroupPage();
   }
 
@@ -59,14 +59,14 @@ public class GroupHelper extends HelperBase {
     edit();
     fillForm(group);
     update();
-    groupCache=null;
+    groupCache = null;
     returnGroupPage();
   }
 
   public void delete(GroupData group) {
     selectGroupById(group.getId());
     deleteSelected();
-    groupCache=null;
+    groupCache = null;
     returnGroupPage();
   }
 
