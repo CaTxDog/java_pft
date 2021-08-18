@@ -6,6 +6,8 @@ import ru.truakdsg.pft.addressbook.appmanager.HelperBase;
 import ru.truakdsg.pft.addressbook.model.ContactData;
 import ru.truakdsg.pft.addressbook.model.Contacts;
 
+import java.io.File;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -19,6 +21,7 @@ public class ContactCreationTest extends TestBase {
   @Test
   public void testContactCreation() throws Exception {
     Contacts before = app.contact().all();
+    File photo = new File("src/test/resources/stru.png");
     ContactData contact = new ContactData()
             .withFirstname("Sergey "+HelperBase.generateRandomInt(50))
             .withLastname("Test "+HelperBase.generateRandomInt(50))
@@ -28,7 +31,8 @@ public class ContactCreationTest extends TestBase {
             .withHomePhone("+7"+HelperBase.generateRandomInt(Integer.MAX_VALUE))
             .withMobilePhone("+7"+HelperBase.generateRandomInt(Integer.MAX_VALUE))
             .withEmail("test@test1.com")
-            .withEmail2("test1@test1.com");
+            .withEmail2("test1@test1.com")
+            .withPhoto(photo);
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size()+1));
     Contacts after = app.contact().all();
