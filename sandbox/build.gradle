@@ -8,6 +8,7 @@ repositories {
 
 dependencies {
     implementation 'org.testng:testng:7.4.0'
+    implementation 'com.thoughtworks.xstream:xstream:1.4.17'
 }
 
 test {

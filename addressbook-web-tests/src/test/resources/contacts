@@ -1,0 +1,44 @@
+[
+  {
+    "firstname": "Sergey 13",
+    "lastname": "Test 24",
+    "nickname": "NewBie 3",
+    "photo": {},
+    "company": "Raif",
+    "address": "Omsk",
+    "homePhone": "+71975983475",
+    "mobilePhone": "+7826344398",
+    "workPhone": "+72107514899",
+    "email": "Email_1@test.com",
+    "email2": "Email_2@test1.com",
+    "email3": "Email_3@test1.com"
+  },
+  {
+    "firstname": "Sergey 33",
+    "lastname": "Test 45",
+    "nickname": "NewBie 19",
+    "photo": {},
+    "company": "Raif",
+    "address": "Omsk",
+    "homePhone": "+7408936782",
+    "mobilePhone": "+7917748911",
+    "workPhone": "+7944425081",
+    "email": "Email_1@test.com",
+    "email2": "Email_2@test1.com",
+    "email3": "Email_3@test1.com"
+  },
+  {
+    "firstname": "Sergey 13",
+    "lastname": "Test 24",
+    "nickname": "NewBie 28",
+    "photo": {},
+    "company": "Raif",
+    "address": "Omsk",
+    "homePhone": "+71943354010",
+    "mobilePhone": "+7586485759",
+    "workPhone": "+71323736509",
+    "email": "Email_1@test.com",
+    "email2": "Email_2@test1.com",
+    "email3": "Email_3@test1.com"
+  }
+]
