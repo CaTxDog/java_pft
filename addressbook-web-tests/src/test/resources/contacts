@@ -1,44 +1,44 @@
-[
-  {
-    "firstname": "Sergey 13",
-    "lastname": "Test 24",
-    "nickname": "NewBie 3",
-    "photo": {},
-    "company": "Raif",
-    "address": "Omsk",
-    "homePhone": "+71975983475",
-    "mobilePhone": "+7826344398",
-    "workPhone": "+72107514899",
-    "email": "Email_1@test.com",
-    "email2": "Email_2@test1.com",
-    "email3": "Email_3@test1.com"
-  },
-  {
-    "firstname": "Sergey 33",
-    "lastname": "Test 45",
-    "nickname": "NewBie 19",
-    "photo": {},
-    "company": "Raif",
-    "address": "Omsk",
-    "homePhone": "+7408936782",
-    "mobilePhone": "+7917748911",
-    "workPhone": "+7944425081",
-    "email": "Email_1@test.com",
-    "email2": "Email_2@test1.com",
-    "email3": "Email_3@test1.com"
-  },
-  {
-    "firstname": "Sergey 13",
-    "lastname": "Test 24",
-    "nickname": "NewBie 28",
-    "photo": {},
-    "company": "Raif",
-    "address": "Omsk",
-    "homePhone": "+71943354010",
-    "mobilePhone": "+7586485759",
-    "workPhone": "+71323736509",
-    "email": "Email_1@test.com",
-    "email2": "Email_2@test1.com",
-    "email3": "Email_3@test1.com"
-  }
-]
+<list>
+  <contact>
+    <firstname>Sergey 16</firstname>
+    <lastname>Test 49</lastname>
+    <nickname>NewBie 7</nickname>
+    <photo>src\test\resources\stru.png</photo>
+    <company>Raif</company>
+    <address>Omsk</address>
+    <homePhone>+7724307810</homePhone>
+    <mobilePhone>+7177158067</mobilePhone>
+    <workPhone>+7340559745</workPhone>
+    <email>Email_1@test.com</email>
+    <email2>Email_2@test1.com</email2>
+    <email3>Email_3@test1.com</email3>
+  </contact>
+  <contact>
+    <firstname>Sergey 18</firstname>
+    <lastname>Test 32</lastname>
+    <nickname>NewBie 40</nickname>
+    <photo>src\test\resources\stru.png</photo>
+    <company>Raif</company>
+    <address>Omsk</address>
+    <homePhone>+71365723500</homePhone>
+    <mobilePhone>+7657478180</mobilePhone>
+    <workPhone>+7984457001</workPhone>
+    <email>Email_1@test.com</email>
+    <email2>Email_2@test1.com</email2>
+    <email3>Email_3@test1.com</email3>
+  </contact>
+  <contact>
+    <firstname>Sergey 20</firstname>
+    <lastname>Test 2</lastname>
+    <nickname>NewBie 14</nickname>
+    <photo>src\test\resources\stru.png</photo>
+    <company>Raif</company>
+    <address>Omsk</address>
+    <homePhone>+7418806749</homePhone>
+    <mobilePhone>+72141567562</mobilePhone>
+    <workPhone>+7603826948</workPhone>
+    <email>Email_1@test.com</email>
+    <email2>Email_2@test1.com</email2>
+    <email3>Email_3@test1.com</email3>
+  </contact>
+</list>

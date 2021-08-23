@@ -12,7 +12,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactInformationTests extends TestBase {
 
-  @BeforeMethod(enabled = false)
+  @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().HomePage();
     if (app.contact().all().size() == 0) {
