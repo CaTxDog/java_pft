@@ -221,21 +221,21 @@ public class ContactData {
     return allEmails;
   }
 
-  public File getPhoto() {
-    return new File(photo);
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname) && Objects.equals(address, that.address);
+    return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname) && Objects.equals(nickname, that.nickname) && Objects.equals(company, that.company) && Objects.equals(address, that.address) && Objects.equals(homePhone, that.homePhone) && Objects.equals(mobilePhone, that.mobilePhone) && Objects.equals(workPhone, that.workPhone) && Objects.equals(email, that.email) && Objects.equals(email2, that.email2) && Objects.equals(email3, that.email3) && Objects.equals(group, that.group);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstname, lastname, address);
+    return Objects.hash(id, firstname, lastname, nickname, company, address, homePhone, mobilePhone, workPhone, email, email2, email3, group);
+  }
+
+  public File getPhoto() {
+    return new File(photo);
   }
 
   @Override

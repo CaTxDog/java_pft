@@ -4,12 +4,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.truakdsg.pft.addressbook.model.ContactData;
 
+import java.io.File;
+
 public class ContactViewDetailsTest extends TestBase{
 
   @BeforeMethod
   public void ensurePreconditions(){
     app.goTo().HomePage();
-    if (app.contact().all().size() == 0){
+    if (app.db().contacts().size() == 0){
       app.contact().create(new ContactData()
               .withFirstname("Petr")
               .withLastname("Petrov")
@@ -36,6 +38,7 @@ public class ContactViewDetailsTest extends TestBase{
             .withFirstname("Modify")
             .withLastname("Modify")
             .withNickname("Modify")
+            .withPhoto(new File("src\\test\\resources\\stru.png"))
             .withCompany("Modify")
             .withAddress("Modify")
             .withHomePhone("Modify")
