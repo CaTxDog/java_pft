@@ -9,6 +9,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.truakdsg.pft.addressbook.model.ContactData;
 import ru.truakdsg.pft.addressbook.model.Contacts;
+import ru.truakdsg.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,7 +25,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTest extends TestBase {
 
-  @BeforeSuite
+  @BeforeSuite(enabled = false)
   public void clearContact() {
     app.contact().deleteAllContact();
   }
@@ -36,6 +37,7 @@ public class ContactCreationTest extends TestBase {
 
   @DataProvider
   public Iterator<Object[]> validContactsCsv() throws IOException {
+    Groups groups = app.db().groups();
     List<Object[]> list = new ArrayList<Object[]>();
     try (BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/contacts"))) {
       String line = reader.readLine();
@@ -53,7 +55,8 @@ public class ContactCreationTest extends TestBase {
                 .withWorkPhone(split[8])
                 .withEmail(split[9])
                 .withEmail2(split[10])
-                .withEmail3(split[11])});
+                .withEmail3(split[11])
+                .inGroup(groups.iterator().next())});
         line = reader.readLine();
       }
       return list.iterator();
@@ -94,8 +97,9 @@ public class ContactCreationTest extends TestBase {
     }
   }
 
-  @Test(dataProvider = "validContactsXml")
+  @Test(dataProvider = "validContactsCsv")
   public void testContactCreation(ContactData contact) throws Exception {
+    Groups groups = app.db().groups();
     Contacts before = app.db().contacts();
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size() + 1));

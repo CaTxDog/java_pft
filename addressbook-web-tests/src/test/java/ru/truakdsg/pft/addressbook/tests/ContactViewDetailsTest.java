@@ -30,7 +30,7 @@ public class ContactViewDetailsTest extends TestBase{
     app.contact().viewDetails();
  }
 
-  @Test
+/*  @Test
   public void modifyContactDetails() throws Exception {
     app.contact().viewDetails();
     app.contact().editContact();
@@ -45,6 +45,6 @@ public class ContactViewDetailsTest extends TestBase{
             .withMobilePhone("Modify")
             .withEmail("Modify@Modify1.com")
             .withEmail2("Modify2@Modify2.com"));
-  }
+  }*/
 
 }

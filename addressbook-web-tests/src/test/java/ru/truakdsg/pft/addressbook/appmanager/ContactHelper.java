@@ -3,6 +3,8 @@ package ru.truakdsg.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.truakdsg.pft.addressbook.model.ContactData;
 import ru.truakdsg.pft.addressbook.model.Contacts;
 
@@ -18,7 +20,7 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-  public void fillContactForm(ContactData contactData) {
+  public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"),contactData.getFirstname());
     type(By.name("lastname"),contactData.getLastname());
     type(By.name("nickname"),contactData.getNickname());
@@ -31,6 +33,19 @@ public class ContactHelper extends HelperBase {
     type(By.name("email"),contactData.getEmail());
     type(By.name("email2"),contactData.getEmail2());
     type(By.name("email3"),contactData.getEmail3());
+
+
+    if (creation){
+      if (contactData.getGroups().size() > 0){
+        Assert.assertTrue(contactData.getGroups().size() == 1);
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+      }
+      else {
+        Assert.assertFalse(isElementPresent(By.name("new_groups")));
+      }
+    }
+
+
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
@@ -98,14 +113,14 @@ public class ContactHelper extends HelperBase {
 
   public void create(ContactData contact) {
     creatNewContact();
-    fillContactForm(contact);
+    fillContactForm(contact, true);
     contactCache = null;
     returnHomePage();
   }
 
   public void modify(ContactData contact) {
     editContactSelectedById(contact.getId());
-    fillContactForm(contact);
+    fillContactForm(contact, false);
     update();
     contactCache = null;
     HomePage();
