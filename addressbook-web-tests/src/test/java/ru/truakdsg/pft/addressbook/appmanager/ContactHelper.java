@@ -49,6 +49,18 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
+  public void addContactToGroup (ContactData contact){
+    selectContactById(contact.getId());
+    new Select(wd.findElement(By.xpath("/html/body/div/div[4]/form[2]/div[4]/select"))).selectByVisibleText(contact.getGroups().iterator().next().getName());
+    click(By.xpath("/html/body/div/div[4]/form[2]/div[4]/input"));
+  }
+
+  public void removeContactFromGroup(ContactData contact){
+    new Select(wd.findElement(By.xpath("/html/body/div/div[4]/form[1]/select"))).selectByVisibleText(contact.getGroups().iterator().next().getName());
+    selectContactById(contact.getId());
+    click(By.xpath("/html/body/div/div[4]/form[2]/div[3]/input"));
+  }
+
   public void selectContactByNumber(final int s){
     click(By.xpath("//table//tr[" + String.valueOf(s+1) + "]/td[1]/input"));
   }

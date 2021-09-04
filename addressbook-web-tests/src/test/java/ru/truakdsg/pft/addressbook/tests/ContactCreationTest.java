@@ -25,7 +25,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTest extends TestBase {
 
-  @BeforeSuite(enabled = false)
+  @BeforeSuite(enabled = true)
   public void clearContact() {
     app.contact().deleteAllContact();
   }
