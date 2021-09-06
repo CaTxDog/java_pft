@@ -36,10 +36,37 @@ public class DbHelper {
   public Contacts contacts(){
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<ContactData> result = session.createQuery("from ContactData").list();
+    List<ContactData> result = session.createQuery("from ContactData").setMaxResults(1000).list();
     session.getTransaction().commit();
     session.close();
     return new Contacts(result);
+  }
+
+  public ContactData contactsFirst(){
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    ContactData result = (ContactData) session.createQuery("from ContactData").setMaxResults(1).list().get(0);
+    session.getTransaction().commit();
+    session.close();
+    return result;
+  }
+
+  public GroupData groupsFirst(){
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    GroupData result = (GroupData) session.createQuery("from GroupData").setMaxResults(1).list().get(0);
+    session.getTransaction().commit();
+    session.close();
+    return result;
+  }
+
+  public ContactData getContactsById(Integer id){
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    ContactData result = (ContactData) session.createQuery("from ContactData where id = :paramName").setParameter("paramName", id).list().get(0);
+    session.getTransaction().commit();
+    session.close();
+    return result;
   }
 
 }

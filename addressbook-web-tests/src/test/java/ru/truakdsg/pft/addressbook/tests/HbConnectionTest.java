@@ -8,7 +8,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.truakdsg.pft.addressbook.model.ContactData;
-import ru.truakdsg.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -42,13 +41,5 @@ public class HbConnectionTest {
       System.out.println(contact);
       System.out.println(contact.getGroups());
     }
-    System.out.println();
-    System.out.println();
-    System.out.println();
-    System.out.println();
-    System.out.println(result.iterator().next());
-    System.out.println(result.iterator().next().getGroups());
-    session.getTransaction().commit();
-    session.close();
   }
 }

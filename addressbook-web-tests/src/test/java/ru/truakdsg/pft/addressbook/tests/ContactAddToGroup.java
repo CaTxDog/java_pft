@@ -1,7 +1,6 @@
 package ru.truakdsg.pft.addressbook.tests;
 
-import io.netty.util.internal.ConstantTimeUtils;
-import org.hamcrest.MatcherAssert;
+import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -15,9 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static org.hamcrest.CoreMatchers.*;
 
 public class ContactAddToGroup extends TestBase{
 
@@ -57,14 +54,14 @@ public class ContactAddToGroup extends TestBase{
     return list.iterator();
   }
 
-  @Test (dataProvider = "test")
-  public void testContactAddToGroup(ContactData contact){
-    Contacts before = app.db().contacts();
-    app.contact().addContactToGroup(contact);
-    Contacts after = app.db().contacts();
-    System.out.println(contact.getGroups());
-    System.out.println();
-    MatcherAssert.assertThat(after.iterator().next().getGroups(), equalTo(contact.getGroups()));
 
+  @Test
+  public void testContactAddToGroupNew(){
+    ContactData contactFirst = app.db().contactsFirst();
+    GroupData groupFirst = app.db().groupsFirst();
+    ContactData contact = new ContactData().withId(contactFirst.getId()).inGroup(groupFirst);
+    app.contact().addContactToGroup(contact);
+    ContactData after = app.db().getContactsById(contactFirst.getId());
+    Assert.assertTrue(after.getGroups().contains(groupFirst));
   }
 }

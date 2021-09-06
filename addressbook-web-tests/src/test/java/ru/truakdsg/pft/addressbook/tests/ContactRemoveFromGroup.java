@@ -1,39 +1,55 @@
 package ru.truakdsg.pft.addressbook.tests;
 
-import org.hamcrest.MatcherAssert;
-import org.testng.annotations.DataProvider;
+import org.testng.Assert;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import ru.truakdsg.pft.addressbook.model.ContactData;
-import ru.truakdsg.pft.addressbook.model.Contacts;
-import ru.truakdsg.pft.addressbook.model.Groups;
+import ru.truakdsg.pft.addressbook.model.GroupData;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-
-import static org.hamcrest.CoreMatchers.not;
+import java.io.File;
 
 public class ContactRemoveFromGroup extends TestBase{
 
-
-  @DataProvider
-  public Iterator<Object[]> test() throws IOException {
-    Groups groups = app.db().groups();
-    Contacts contactBD = app.db().contacts();
-    ContactData contact = contactBD.iterator().next();
-    List<Object[]> list = new ArrayList<Object[]>();
-    list.add(new Object[]{new ContactData().withId(contact.getId()).inGroup(groups.iterator().next())});
-    return list.iterator();
+  @BeforeSuite
+  public void ensurePreconditions() {
+    app.goTo().HomePage();
+    if (app.db().contacts().size() == 0) {
+      app.contact().create(new ContactData()
+              .withFirstname("Petr")
+              .withLastname("Petrov")
+              .withNickname("Terminator111")
+              .withCompany("Raif")
+              .withAddress("Omsk")
+              .withHomePhone("111111111111")
+              .withMobilePhone("111111111222")
+              .withEmail("test@test2.com")
+              .withEmail2("test1@test1.com")
+              .withPhoto(new File("src\\test\\resources\\stru.png")));
+    }
+    if (app.db().groups().size() == 0) {
+      app.goTo().GroupPage();
+      app.group().create(new GroupData()
+              .withName("New name " + app.group().generateRandomInt(50))
+              .withHeader("New header " + app.group().generateRandomInt(50))
+              .withFooter("New footer " + app.group().generateRandomInt(50)));
+      app.goTo().HomePage();
+    }
+    ContactData contactFirst = app.db().contactsFirst();
+    GroupData groupFirst = app.db().groupsFirst();
+    if (contactFirst.getGroups().contains(groupFirst) == false){
+      ContactData contact = new ContactData().withId(contactFirst.getId()).inGroup(groupFirst);
+      app.contact().addContactToGroup(contact);
+      app.goTo().HomePage();
+    }
   }
 
-  @Test(dataProvider = "test")
-  public void testContactAddToGroup(ContactData contact){
+  @Test
+  public void testContactAddToGroup(){
+    ContactData contactFirst = app.db().contactsFirst();
+    GroupData groupFirst = app.db().groupsFirst();
+    ContactData contact = new ContactData().withId(contactFirst.getId()).inGroup(groupFirst);
     app.contact().removeContactFromGroup(contact);
-    Contacts after = app.db().contacts();
-    System.out.println(after.iterator().next().getGroups());
-    System.out.println(contact.getGroups());
-    MatcherAssert.assertThat(after.iterator().next().getGroups(), not(contact.getGroups()));
+    ContactData after = app.db().getContactsById(contactFirst.getId());
+    Assert.assertFalse(after.getGroups().contains(groupFirst));
   }
 }
