@@ -42,18 +42,15 @@ public class ContactAddToGroup extends TestBase{
               .withFooter("New footer " + app.group().generateRandomInt(50)));
       app.goTo().HomePage();
     }
+    ContactData contactFirst = app.db().contactsFirst();
+    GroupData groupFirst = app.db().groupsFirst();
+    if (contactFirst.getGroups().contains(groupFirst) == true){
+      ContactData contact = new ContactData().withId(contactFirst.getId()).inGroup(groupFirst);
+      app.contact().removeContactFromGroup(contact);
+      app.goTo().HomePage();
+    }
   }
-
-  @DataProvider
-  public Iterator<Object[]> test() throws IOException {
-    Groups groups = app.db().groups();
-    Contacts contactBD = app.db().contacts();
-    ContactData contact = contactBD.iterator().next();
-    List<Object[]> list = new ArrayList<Object[]>();
-    list.add(new Object[]{new ContactData().withId(contact.getId()).inGroup(groups.iterator().next())});
-    return list.iterator();
-  }
-
+  
 
   @Test
   public void testContactAddToGroupNew(){
