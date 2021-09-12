@@ -2,6 +2,7 @@ package ru.truakdsg.pft.addressbook.appmanager;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -60,6 +61,15 @@ public class DbHelper {
     return result;
   }
 
+  public GroupData groupsLast(){
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    GroupData result = (GroupData) session.createQuery("from GroupData order by id DESC").setMaxResults(1).list().get(0);
+    session.getTransaction().commit();
+    session.close();
+    return result;
+  }
+
   public ContactData getContactsById(Integer id){
     Session session = sessionFactory.openSession();
     session.beginTransaction();
@@ -69,4 +79,24 @@ public class DbHelper {
     return result;
   }
 
+  public void addGroup(){
+    Session session = sessionFactory.openSession();
+    Transaction tx = session.beginTransaction();
+    GroupData result = (GroupData) session.createQuery("from GroupData order by id DESC").setMaxResults(1).list().get(0);
+    GroupData newGroup = new GroupData().withId(result.getId()+1).withName("new group").withHeader("new Header").withFooter("new footer");
+    session.save(newGroup);
+    session.flush();
+    tx.commit();
+    session.close();
+  }
+
+  public void deleteGroup(){
+    Session session = sessionFactory.openSession();
+    Transaction tx = session.beginTransaction();
+    GroupData deleteNew = (GroupData) session.createQuery("from GroupData order by id DESC").setMaxResults(1).list().get(0);
+    session.delete(deleteNew);
+    session.flush();
+    tx.commit();
+    session.close();
+  }
 }

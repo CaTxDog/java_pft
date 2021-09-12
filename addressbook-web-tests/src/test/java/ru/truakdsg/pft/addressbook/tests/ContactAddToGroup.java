@@ -1,25 +1,20 @@
 package ru.truakdsg.pft.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.truakdsg.pft.addressbook.model.ContactData;
-import ru.truakdsg.pft.addressbook.model.Contacts;
 import ru.truakdsg.pft.addressbook.model.GroupData;
-import ru.truakdsg.pft.addressbook.model.Groups;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 
 public class ContactAddToGroup extends TestBase{
 
   @BeforeSuite
   public void ensurePreconditions() {
+    app.db().addGroup();
     app.goTo().HomePage();
     if (app.db().contacts().size() == 0) {
       app.contact().create(new ContactData()
@@ -50,15 +45,19 @@ public class ContactAddToGroup extends TestBase{
       app.goTo().HomePage();
     }
   }
-  
+
+  @AfterSuite
+  public void ensureAftercondition(){
+    app.db().deleteGroup();
+  }
 
   @Test
   public void testContactAddToGroupNew(){
     ContactData contactFirst = app.db().contactsFirst();
-    GroupData groupFirst = app.db().groupsFirst();
-    ContactData contact = new ContactData().withId(contactFirst.getId()).inGroup(groupFirst);
+    GroupData groupLast = app.db().groupsLast();
+    ContactData contact = new ContactData().withId(contactFirst.getId()).inGroup(groupLast);
     app.contact().addContactToGroup(contact);
     ContactData after = app.db().getContactsById(contactFirst.getId());
-    Assert.assertTrue(after.getGroups().contains(groupFirst));
+    Assert.assertTrue(after.getGroups().contains(groupLast));
   }
 }

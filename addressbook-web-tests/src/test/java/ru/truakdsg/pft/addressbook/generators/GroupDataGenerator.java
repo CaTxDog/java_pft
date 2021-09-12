@@ -34,6 +34,8 @@ public class GroupDataGenerator {
   }
 
   private void run() throws IOException {
+    final String dir = System.getProperty("user.dir");
+    System.out.println("current dir = " + dir);
     List<GroupData> groups = generateGroups(count);
     if (format.equals("csv")) {
       saveAsCsv(groups, new File(file));
