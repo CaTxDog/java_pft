@@ -5,14 +5,20 @@ repositories {
 }
 
 dependencies {
+    implementation 'ch.qos.logback:logback-classic:1.2.5'
     implementation 'org.testng:testng:7.4.0'
     implementation 'org.seleniumhq.selenium:selenium-java:4.0.0-beta-4'
     implementation 'org.hamcrest:java-hamcrest:2.0.0.0'
+    implementation 'org.apache.httpcomponents.client5:httpclient5:5.1'
+    implementation 'org.apache.httpcomponents.client5:httpclient5-fluent:5.1'
+    implementation 'org.apache.httpcomponents.client5:httpclient5-cache:5.1'
+    implementation 'commons-net:commons-net:3.8.0'
+    implementation 'org.subethamail:subethasmtp:3.1.7'
+    implementation 'ru.lanwen.verbalregex:java-verbal-expressions:1.8'
 }
 
 test {
-    useTestNG {
-        suites 'src/test/resources/testng.xml'
+    useTestNG() {
     }
     if (project.hasProperty('browser')){
         systemProperty 'browser', "${browser}"
